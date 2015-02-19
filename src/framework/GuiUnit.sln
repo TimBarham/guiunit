@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiUnit_NET_4_5", "GuiUnit_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiUnit_NET_4_0", "GuiUnit_NET_4_0.csproj", "{E13A0A7B-4DE6-43ED-A139-41052D065A9B}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GuiUnit", "GuiUnit.shproj", "{512A4534-44AE-403B-AAE3-0A319341D8C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
