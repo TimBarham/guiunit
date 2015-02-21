@@ -60,6 +60,7 @@ namespace GuiUnit
 				try { mainLoop = mainLoop ?? new MonoMacMainLoopIntegration (); } catch { }
 				try { mainLoop = mainLoop ?? new GtkMainLoopIntegration (); } catch { }
 				try { mainLoop = mainLoop ?? new iOSMainLoopIntegration (); } catch { }
+				try { mainLoop = mainLoop ?? new AndroidMainLoopIntegration (); } catch { }
 				return mainLoop;
 			} set {
 				mainLoop = value;
@@ -238,30 +239,17 @@ namespace GuiUnit
 				catch (FileNotFoundException ex)
 				{
 					writer.WriteLine(ex.Message);
+					Finish ();
 				}
 				catch (Exception ex)
 				{
 					writer.WriteLine(ex.ToString());
-				}
-				finally
-				{
-					if (commandLineOptions.OutFile == null)
-					{
-						if (commandLineOptions.Wait)
-						{
-							Console.WriteLine("Press Enter key to continue . . .");
-							Console.ReadLine();
-						}
-					}
-					else
-					{
-						writer.Close();
-					}
+					Finish ();
 				}
 			}
 		}
 
-		static void Shutdown ()
+		void Shutdown ()
 		{
 			// Run the shutdown method on the main thread
 			var helper = new InvokerHelper {
@@ -269,10 +257,27 @@ namespace GuiUnit
 					if (BeforeShutdown != null)
 						BeforeShutdown (null, EventArgs.Empty);
 					MainLoop.Shutdown ();
+					Finish ();
 					return null;
 				}
 			};
 			MainLoop.InvokeOnMainLoop (helper);
+		}
+
+		void Finish ()
+		{
+			if (commandLineOptions.OutFile == null)
+			{
+				if (commandLineOptions.Wait)
+				{
+					Console.WriteLine("Press Enter key to continue . . .");
+					Console.ReadLine();
+				}
+			}
+			else
+			{
+				writer.Close();
+			}
 		}
 
 		/// <summary>

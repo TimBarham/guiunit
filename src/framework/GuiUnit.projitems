@@ -288,6 +288,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)TestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Throws.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GuiUnit\iOSMainLoopIntegration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GuiUnit\AndroidMainLoopIntegration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)guiunit.snk" />
